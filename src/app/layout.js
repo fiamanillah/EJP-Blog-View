@@ -1,6 +1,9 @@
+'use client';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
+
+import { KindeProvider } from '@kinde-oss/kinde-auth-nextjs';
 
 const geistSans = Geist({
     variable: '--font-geist-sans',
@@ -21,8 +24,16 @@ export default function RootLayout({ children }) {
     return (
         <html lang="en">
             <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-                <Header />
-                {children}
+                <KindeProvider
+                    config={{
+                        domain: process.env.KINDE_ISSUER_URL,
+                        clientId: process.env.KINDE_CLIENT_ID,
+                        redirectUri: process.env.KINDE_POST_LOGIN_REDIRECT_URL,
+                    }}
+                >
+                    <Header />
+                    {children}
+                </KindeProvider>
             </body>
         </html>
     );
