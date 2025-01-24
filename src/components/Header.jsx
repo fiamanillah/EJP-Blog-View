@@ -8,9 +8,10 @@ export default async function Header() {
 
     return (
         <div className="flex justify-between items-center p-4 bg-slate-900">
-            <h1 className="text-4xl font-extrabold">Header</h1>
+            <h1 className="text-4xl font-extrabold">
+                <Link href="/">Blog View</Link>
+            </h1>
             <div className="flex space-x-4 font-bold text-xl">
-                <Link href="/">Home</Link>
                 <Link href="/">Home</Link>
                 {user ? (
                     <>
